@@ -1,0 +1,270 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>House Price Prediction</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #3498db;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eaf7ee;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .result h2 {
+            margin: 0;
+            color: #27ae60;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🏠 House Price Prediction</h1>
+
+        <p class="subtitle">
+            Enter the characteristics of the house to estimate its price.
+        </p>
+
+        <form method="POST">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="OverallQual">
+                        Overall Quality
+                    </label>
+                    <input
+                        type="number"
+                        id="OverallQual"
+                        name="OverallQual"
+                        min="1"
+                        max="10"
+                        placeholder="Example: 7"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="GrLivArea">
+                        Living Area (sq ft)
+                    </label>
+                    <input
+                        type="number"
+                        id="GrLivArea"
+                        name="GrLivArea"
+                        min="0"
+                        placeholder="Example: 1800"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="GarageCars">
+                        Garage Capacity
+                    </label>
+                    <input
+                        type="number"
+                        id="GarageCars"
+                        name="GarageCars"
+                        min="0"
+                        max="5"
+                        placeholder="Example: 2"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="TotalBsmtSF">
+                        Basement Area (sq ft)
+                    </label>
+                    <input
+                        type="number"
+                        id="TotalBsmtSF"
+                        name="TotalBsmtSF"
+                        min="0"
+                        placeholder="Example: 1000"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="FullBath">
+                        Full Bathrooms
+                    </label>
+                    <input
+                        type="number"
+                        id="FullBath"
+                        name="FullBath"
+                        min="0"
+                        max="5"
+                        placeholder="Example: 2"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="BedroomAbvGr">
+                        Bedrooms
+                    </label>
+                    <input
+                        type="number"
+                        id="BedroomAbvGr"
+                        name="BedroomAbvGr"
+                        min="0"
+                        max="10"
+                        placeholder="Example: 3"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="YearBuilt">
+                        Year Built
+                    </label>
+                    <input
+                        type="number"
+                        id="YearBuilt"
+                        name="YearBuilt"
+                        min="1800"
+                        max="2026"
+                        placeholder="Example: 2005"
+                        required>
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Predict House Price
+            </button>
+
+        </form>
+
+        {% if prediction is not none %}
+
+        <div class="result">
+            <h2>
+                Predicted Price: ${{ "%.2f"|format(prediction) }}
+            </h2>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <div class="footer">
+        Machine Learning & Flask Application
+    </div>
+
+</div>
+
+</body>
+</html>
+```
